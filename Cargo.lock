@@ -270,7 +270,7 @@ dependencies = [
 
 [[package]]
 name = "chia-inspect"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "chia-inspect-core",
@@ -280,7 +280,7 @@ dependencies = [
 
 [[package]]
 name = "chia-inspect-core"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "chia-bls 0.36.1",
@@ -667,7 +667,7 @@ dependencies = [
 
 [[package]]
 name = "clvm-workbench"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "anyhow",
  "chialisp",
