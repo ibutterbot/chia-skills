@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/ibutterbot/chia-skills/compare/v1.0.0...v1.0.1) (2026-02-26)
+
+
+### Bug Fixes
+
+* **ci:** trigger binary publishing from release workflow completion ([d371878](https://github.com/ibutterbot/chia-skills/commit/d37187869c2f1b31f1a064397a9d3522992dda28))
+* **test:** make golden inspection snapshot version-agnostic ([81da0e7](https://github.com/ibutterbot/chia-skills/commit/81da0e72ba93e4f258ae53165802ebeb4f46f435))
+
 # 1.0.0 (2026-02-26)
 
 
