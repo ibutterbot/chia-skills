@@ -1,14 +1,16 @@
 name: Release Binaries
 
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Release"]
+    types: [completed]
 
 permissions:
   contents: write
 
 jobs:
   build-and-upload:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main' }}
     strategy:
       fail-fast: false
       matrix:
@@ -29,8 +31,19 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Resolve latest release tag
+        id: release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const release = await github.rest.repos.getLatestRelease({ owner, repo });
+            core.setOutput("tag", release.data.tag_name);
+
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.release.outputs.tag }}
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
@@ -49,7 +62,7 @@ jobs:
           cp "target/${{ matrix.target }}/release/clvm-workbench" dist/
           cp README.md dist/
           if [ -f cats_by_asset_id.json ]; then cp cats_by_asset_id.json dist/; fi
-          tar -C dist -czf "chia-skills-${{ github.ref_name }}-${{ matrix.target }}.tar.gz" .
+          tar -C dist -czf "chia-skills-${{ steps.release.outputs.tag }}-${{ matrix.target }}.tar.gz" .
 
       - name: Package (windows)
         if: runner.os == 'Windows'
@@ -60,16 +73,18 @@ jobs:
           Copy-Item "target/${{ matrix.target }}/release/clvm-workbench.exe" dist/
           Copy-Item README.md dist/
           if (Test-Path cats_by_asset_id.json) { Copy-Item cats_by_asset_id.json dist/ }
-          Compress-Archive -Path dist/* -DestinationPath "chia-skills-${{ github.ref_name }}-${{ matrix.target }}.zip"
+          Compress-Archive -Path dist/* -DestinationPath "chia-skills-${{ steps.release.outputs.tag }}-${{ matrix.target }}.zip"
 
       - name: Upload asset (unix)
         if: runner.os != 'Windows'
         uses: softprops/action-gh-release@v2
         with:
-          files: chia-skills-${{ github.ref_name }}-${{ matrix.target }}.tar.gz
+          tag_name: ${{ steps.release.outputs.tag }}
+          files: chia-skills-${{ steps.release.outputs.tag }}-${{ matrix.target }}.tar.gz
 
       - name: Upload asset (windows)
         if: runner.os == 'Windows'
         uses: softprops/action-gh-release@v2
         with:
-          files: chia-skills-${{ github.ref_name }}-${{ matrix.target }}.zip
+          tag_name: ${{ steps.release.outputs.tag }}
+          files: chia-skills-${{ steps.release.outputs.tag }}-${{ matrix.target }}.zip
