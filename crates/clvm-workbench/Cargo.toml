@@ -1,0 +1,11 @@
+[package]
+name = "clvm-workbench"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+hex.workspace = true
+chialisp.workspace = true
+clvmr.workspace = true

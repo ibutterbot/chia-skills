@@ -1,0 +1,170 @@
+{
+  "schema_version": "chia.inspect.spendbundle.v2",
+  "tool": {
+    "name": "chia-inspect",
+    "version": "0.1.0"
+  },
+  "network": {
+    "name": "offline",
+    "genesis_challenge": "0xccd5bb71183532bff220ba46c268991a3ff07eb358e8255a65c30a2dce0e5fbb"
+  },
+  "input": {
+    "source": {
+      "kind": "mempool_item",
+      "value": null,
+      "rpc": null
+    },
+    "notes": []
+  },
+  "result": {
+    "status": "ok",
+    "error": null,
+    "summary": {
+      "removals": [
+        {
+          "coin_id": "0x566c1bc9343b6f396adc1104d65cfbbe5e713ad1d3a0d139ce7e057df3dd8edb",
+          "parent_coin_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+          "puzzle_hash": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+          "amount": 1
+        }
+      ],
+      "additions": [
+        {
+          "coin_id": "0x983667678962cdc5dd4b2e9793ac6cd55065cb9e03f9a5cbf1ceb5151d78dad9",
+          "parent_coin_id": "0x566c1bc9343b6f396adc1104d65cfbbe5e713ad1d3a0d139ce7e057df3dd8edb",
+          "puzzle_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+          "amount": 1
+        }
+      ],
+      "fee_mojos": 0,
+      "net_xch_delta_by_puzzle_hash": [
+        {
+          "puzzle_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+          "delta_mojos": 1
+        },
+        {
+          "puzzle_hash": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+          "delta_mojos": -1
+        }
+      ]
+    },
+    "spends": [
+      {
+        "coin_spend": {
+          "coin": {
+            "coin_id": "0x566c1bc9343b6f396adc1104d65cfbbe5e713ad1d3a0d139ce7e057df3dd8edb",
+            "parent_coin_id": "0x1111111111111111111111111111111111111111111111111111111111111111",
+            "puzzle_hash": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+            "amount": 1
+          },
+          "puzzle_reveal": "0x01",
+          "solution": "0xffff33ffa02222222222222222222222222222222222222222222222222222222222222222ff018080"
+        },
+        "puzzle": {
+          "id": {
+            "puzzle_hash": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+            "tree_hash": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2",
+            "shatree": "0x9dcf97a184f32623d11a73124ceb99a5709b083721e878a16d78f596718ba7b2"
+          },
+          "recognition": {
+            "recognized": false,
+            "candidates": [],
+            "wrappers": [],
+            "parsed_solution": null
+          },
+          "puzzle_reveal_disasm": "1",
+          "solution_disasm": "((g1_negate 0x2222222222222222222222222222222222222222222222222222222222222222 1))"
+        },
+        "evaluation": {
+          "status": "ok",
+          "cost": 1800044,
+          "conditions": [
+            {
+              "opcode": "CREATE_COIN",
+              "args": [
+                "0x2222222222222222222222222222222222222222222222222222222222222222",
+                1
+              ],
+              "raw": null
+            }
+          ],
+          "additions": [
+            {
+              "coin_id": "0x983667678962cdc5dd4b2e9793ac6cd55065cb9e03f9a5cbf1ceb5151d78dad9",
+              "parent_coin_id": "0x566c1bc9343b6f396adc1104d65cfbbe5e713ad1d3a0d139ce7e057df3dd8edb",
+              "puzzle_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+              "amount": 1
+            }
+          ],
+          "announcements": [],
+          "assertions": [],
+          "failure": null
+        },
+        "puzzle_behavior": {
+          "clvm": {
+            "puzzle_reveal_bytes": "0x01",
+            "solution_bytes": "0xffff33ffa02222222222222222222222222222222222222222222222222222222222222222ff018080",
+            "puzzle_opd": "1",
+            "solution_opd": "((g1_negate 0x2222222222222222222222222222222222222222222222222222222222222222 1))",
+            "uses_backrefs": false,
+            "serialized_len_bytes": 1
+          },
+          "static_features": {
+            "operators_used": [],
+            "env_paths_used": [
+              1
+            ],
+            "constants": {
+              "bytes32": [],
+              "g1_pubkeys": [],
+              "small_ints": [
+                1
+              ]
+            }
+          },
+          "dynamic": {
+            "status": "ok",
+            "cost": 1800044,
+            "conditions": [
+              {
+                "opcode": "CREATE_COIN",
+                "args": [
+                  "0x2222222222222222222222222222222222222222222222222222222222222222",
+                  1
+                ],
+                "raw": null
+              }
+            ],
+            "created_coins": [
+              {
+                "coin_id": "0x983667678962cdc5dd4b2e9793ac6cd55065cb9e03f9a5cbf1ceb5151d78dad9",
+                "parent_coin_id": "0x566c1bc9343b6f396adc1104d65cfbbe5e713ad1d3a0d139ce7e057df3dd8edb",
+                "puzzle_hash": "0x2222222222222222222222222222222222222222222222222222222222222222",
+                "amount": 1
+              }
+            ],
+            "failure": null
+          },
+          "explanation": {
+            "enforced_signatures": [],
+            "value_flow": [
+              {
+                "action": "create_coin",
+                "amount": 1,
+                "memos_present": false,
+                "puzzle_hash": "0x2222222222222222222222222222222222222222222222222222222222222222"
+              }
+            ],
+            "constraints": []
+          }
+        }
+      }
+    ],
+    "signatures": {
+      "aggregated_signature": "0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "agg_sig_me": [],
+      "agg_sig_unsafe": []
+    },
+    "offer": null
+  }
+}
